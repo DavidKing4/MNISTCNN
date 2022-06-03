@@ -1,0 +1,1 @@
+[Test Results] All 10000 test steps: Avg. Loss 0.6496736765938094 | Accuracy: 83.39%

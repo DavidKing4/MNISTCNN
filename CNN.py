@@ -3,9 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-import warnings
-warnings.filterwarnings("error")
-
 def display_image(image):
     plt.imshow(image, cmap="Greys")
     plt.show()
@@ -34,9 +31,9 @@ class NN:
         with open(path, "r") as file:
             raw = file.read()
             nn_values = json.loads(raw)
-            self.filters = nn_values["filters"]
-            self.weights = nn_values["weights"]
-            self.bias = nn_values["bias"]
+            self.filters = np.array(nn_values["filters"])
+            self.weights = np.array(nn_values["weights"])
+            self.bias = np.array(nn_values["bias"])
             self.p_size = nn_values["p_size"]
             self.filter_width = nn_values["filter_width"]
             self.filter_height = nn_values["filter_height"]
@@ -49,9 +46,9 @@ class NN:
     def save_model(self, path):
         with open(path, "w") as file:
             nn_values = dict()
-            nn_values["filters"] = self.filters
-            nn_values["weights"] = self.weights
-            nn_values["bias"] = self.bias
+            nn_values["filters"] = self.filters.tolist()
+            nn_values["weights"] = self.weights.tolist()
+            nn_values["bias"] = self.bias.tolist()
             nn_values["p_size"] = self.p_size 
             nn_values["filter_width"] = self.filter_width 
             nn_values["filter_height"] = self.filter_height 
