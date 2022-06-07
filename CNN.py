@@ -180,8 +180,8 @@ class NN:
                 for x in range(self.filter_width):
                     dL_dfilters[i,y,x] = (
                     image[
-                        y:self.input_size[1] - self.pool_height + y, 
-                        x:self.input_size[0] - self.pool_width + x
+                        y:self.input_size[1] - self.filter_height + y + 1, 
+                        x:self.input_size[0] - self.filter_width + x + 1
                     ] * dL_da1[i] ).sum()
         return dL_dfilters
 
